@@ -2,12 +2,12 @@ Do **not** modify this file. Please instead modify `report.md`.
 
 # Summary
 Report with up to 6,500 words written by the group.
-- Software engineering (800 words max.)
-- Implementation (2,000 words max.)
-- Testing strategy (1,500 words max.)
+- Software engineering (800 words)
+- Implementation (2,000 words)
+- Testing strategy (1,000 words)
 - Release (500 words max.)
 - Evaluation (1,500 words max.)
-- Group work conclusion (800 words max.)
+- Group work conclusion (600 words max.)
 - Report presentation (200 words max.)
 
 # Software Engineering (Stevie)
@@ -34,7 +34,7 @@ Report with up to 6,500 words written by the group.
 - Describe how issues on release were addressed
 - Provide link to GitHub repository & platform used for distribution
 
-"Although the stokeholder(s) currently have no plans for a commercial release, they recognise the potential of the project and believe it should be further developed.
+"Although the stakeholder(s) currently have no plans for a commercial release, they recognise the potential of the project and believe it should be further developed.
 As such, they recommend releasing an "early version" to the public, complete with all relevant media and advertising materials via the standard paths.
 The feedback and response from the public will determine whether or not the project should be expanded.
 Basically, treat this section of the project as though it is be made public via non-commercial channels. (e,g. itch.io)"
