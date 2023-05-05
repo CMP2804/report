@@ -28,7 +28,7 @@ Report with up to 6,500 words written by the group.
 - List sample tests
 - Discuss how issues were approached
 
-# Release (Jay?)
+# Release (Jay & Ryan)
 - Discuss how the artefact was released
 - Explain choice of platform used for release
 - Describe how issues on release were addressed
@@ -39,13 +39,13 @@ As such, they recommend releasing an "early version" to the public, complete wit
 The feedback and response from the public will determine whether or not the project should be expanded.
 Basically, treat this section of the project as though it is be made public via non-commercial channels. (e,g. itch.io)"
 
-# Evaluation (Stevie & Jack?)
+# Evaluation (Stevie & Jack)
 [Design Principles Website](https://principles.design)
 - Discuss how the project went & what could have been improved
 - Document user reviews of the artefact
 - Discuss how the artefact could be developed further in the future
 
-# Media Materials (Ryan?)
+# Media Materials (Ryan)
 - Create & link a 2-minute video used for marketing
 - Create other marketing materials
 
