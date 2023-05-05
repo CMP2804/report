@@ -1,10 +1,14 @@
-
-
 # Software Engineering (Stevie)
 - Discuss & justify development methodology
+    - ???
 - Describe & justify project structure (incl. diagrams)
+    - Folder structure
+    - Class structure
 - Detail how the project was planned
+    - GitHub Issues & Projects
 - Describe how version control was used
+    - GitHub
+    - Branching strategy
 
 # Implementation (various)
 - Describe what has been made and how it has been made
@@ -14,6 +18,10 @@
 
 # Testing Strategy (Stevie)
 - Detail the testing strategy the team used & how it was implemented
+    - Unit tests
+    - User acceptance tests
+    - Mandatory code reviews
+    - Continuous integration
 - Provide evidence of testing
 - List sample tests
 - Discuss how issues were approached
@@ -24,7 +32,7 @@
 - Describe how issues on release were addressed
 - Provide link to GitHub repository & platform used for distribution
 
-# Evaluation (Jack?)
+# Evaluation (Stevie & Jack?)
 - Discuss how the project went & what could have been improved
 - Document user reviews of the artefact
 - Discuss how the artefact could be developed further in the future
