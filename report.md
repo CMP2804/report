@@ -1,10 +1,12 @@
 # Software Engineering (Stevie)
-The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies.
-Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies
-such as sprints, stand-ups and estimation. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity.
-Instead, a set of tasks was created to kick off development and additional tasks were added to the backlog when needed.
+The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies. Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies such as sprints, stand-ups and estimation. Instead, a set of tasks was created to kick off development and additional tasks were added to the backlog when needed. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity.
 
 ## Project Structure
+### File Structure
+
+
+### Class Structure
+
 
 ## Version Control
 Git version control was used throughout the project.
