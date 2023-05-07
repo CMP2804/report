@@ -1,12 +1,10 @@
 # Software Engineering (Stevie)
-The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies. Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies such as sprints, stand-ups and estimation. Instead, a set of tasks was created to kick off development and additional tasks were added to the backlog when needed. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity.
+The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies.
+Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies
+such as sprints, stand-ups and estimation. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity.
+Instead, a set of tasks was created to kick off development and additional tasks were added to the backlog when needed.
 
 ## Project Structure
-### File Structure
-
-
-### Class Structure
-
 
 ## Version Control
 Git version control was used throughout the project.
@@ -35,6 +33,9 @@ Using these tools, we were able to create an at-a-glance Gantt chart for the pro
 - Justify approach taken and toolsets used
 - Describe challenges faced during development & how they were overcome
 - Justify detail & complexity of the project
+
+Harper Section ----
+I made the guided tutorial section of the level which contains seperate rooms for the playern to move around in and odifferent mehcanics to learn. It was amde using probuilder, which allows the user more freedom and tools to create levels. Using Probuilder i made an outline of the linear path that the player will travel through. Once done i reversed the normals, which hollowed out the interior allowing for a playing area to be created. Then i connected the areas together, added obstacles and doors when necessary to the turotial. These were done using the tools that Probuilder added, like the ability to have greater control of geometry through lines, vertices and faces. Probuilder is a highly useful tool which allows for greater control of Geometry. Its ease of use is immediate as the controls are simple yet powerful in terms of control, as it gives additional functionality not offered by default Unity. This also allows means no external tooling is needed to create simple and complex geometry. A few challenges faced would be the inital level plan creation, and whether or not it would be suitable for the player as a tutorial. This was overcome by simplifying the inital designs and removing the unnessecary additions of geometry.
 
 # Testing Strategy (Stevie)
 - Detail the testing strategy the team used & how it was implemented
