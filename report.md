@@ -42,7 +42,6 @@ I made the guided tutorial section of the level which contains seperate rooms fo
     - Unit tests
     - User acceptance tests
     - Mandatory code reviews
-    - Continuous integration
 - Provide evidence of testing
 - List sample tests
 - Discuss how issues were approached
@@ -56,7 +55,11 @@ Once set up, few issues were encountered. However, the player movement test case
 <img width="677" alt="image" src="https://user-images.githubusercontent.com/101411609/236840837-09a82517-1c34-4c46-9444-bd46540945cd.png">
 
 ## User Acceptance Tests
-Two weeks before release, we ran a set of user acceptance tests using a small set of playtesters. There were plans for a more extensive playtesting session, however only Stevie was able to successfully acquire playtesters, limiting the amount of feedback recieved.
+Two weeks before release, we ran a set of user acceptance tests using a small set of playtesters. There were plans for a more extensive playtesting session, however only Stevie was able to successfully acquire playtesters, limiting the amount of feedback recieved. These were performed over Discord video calls and consisted with players proceeding through the tutorial level, commenting on any confusion they had. For example, one playtester commented that often walls were difficult to spot and it was not immediately obvious if short walls were able to be passed through or not. 
+A multitude of areas for improvement were identified through this process and these were added to the backlog of tasks. However, a small amount remained unaddressed as the team was focused on completing other assignments. In the future, this process could have been improved by incorporating evaluation such as heuristic, quantitive and qualititve evaluation.
+
+## Code Reviews
+According to our branching strategy, features must be created and merged into the `submission` branch using a pull request. A branch protection rule was created for the submission branch that not only prevents pushes directly to `submission`, but also prevents the merging of pull requests without first being approved by another member of the team. This allowed the team to verify the team to validate one another's solutions by looking at the work from another perspective. However, more often than not, this review process was bypassed using administrator privileges. In the future, this process could be improved by encouraging other members of the team to engage in collaborative code reviews.
 
 # Release (Jay?)
 - Discuss how the artefact was released
