@@ -46,6 +46,17 @@ I made the guided tutorial section of the level which contains seperate rooms fo
 - Provide evidence of testing
 - List sample tests
 - Discuss how issues were approached
+A key issue that was identified early on in development was the need for a testing strategy to validate our work. To address this, Stevie came up with a comprehensive yet lightweight testing strategy that didn't require a lot of overhead.
+
+## Unit Tests
+Stevie identified that GitHub Actions could be used to create an automated testing system for developer-defined unit tests. These tests were set up to run every time a member of the team pushed to GitHub or created a pull request. This provided the team with confidence that existing systems remained functional without having to extensively test the entire program manually. Stevie identified [game.ci](https://game.ci) as a resource that provided helpful GitHub Action workflows to automate Unity engine testing on GitHub.
+Once set up, few issues were encountered. However, the player movement test cases seemed to fail randomly and without reason. We believed it was associated with inaccuracies associated with float point arithmetic, so Ethan adjusted the test cases to be approximate, which solved the issue.
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/101411609/236839679-c94798c3-893a-4c48-b63f-0ac38ed86f35.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/101411609/236840127-b7d50ea7-2388-4c51-b6a8-40e42389dd9a.png">
+<img width="677" alt="image" src="https://user-images.githubusercontent.com/101411609/236840837-09a82517-1c34-4c46-9444-bd46540945cd.png">
+
+## User Acceptance Tests
+Two weeks before release, we ran a set of user acceptance tests using a small set of playtesters. There were plans for a more extensive playtesting session, however only Stevie was able to successfully acquire playtesters, limiting the amount of feedback recieved.
 
 # Release (Jay?)
 - Discuss how the artefact was released
