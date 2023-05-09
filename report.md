@@ -51,10 +51,13 @@ When and how to generate points is managed by the SoundMaker component, but soun
 
 Finding where to generate the points
 In order to provide an easy in-editor way of setting up sound generation
-  
+
+![Picture1](https://github.com/CMP2804/report/assets/59376295/dd3abb5d-8ca9-421b-b950-a1809fdf10f1)
+
 <sub>Various options for changing how a sound source will transmit the sound. This example is from the player object, controlling the settings for the player's clap.</sub>
 
- 
+![Picture2](https://github.com/CMP2804/report/assets/59376295/c5c695cf-aef2-479f-846f-131e1072be78)
+
 <sub>A visual indicator is shown for the projection of rays which updates in real-time.</sub>
 
 Whenever a sound is requested to be generated, SoundManager creates MakerRay structs for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to PointCloudRenderer to be instanced. 
@@ -63,20 +66,29 @@ The number of rays processed each frames is determined by this calculation: `Min
 ### Rendering each point
 Once a point has been chosen, its information is passed to PointCloudRenderer, which holds seven parallel lists for the points data:
 •	Colour – The colour of the point based on the material colour of the object hit, or the overridden colour from the ObjectHighlighter component.
+
 •	Lifespan scale – The life in seconds of the point, used as the duration to fade the point out over.
+
 •	Normal – The direction the point should face. This is necessary with a non-spherical mesh used for the points. Whilst the release version uses spheres for the points, we originally used quads, but decided on spheres as they looked nicer.
+
 •	Point – The position of the point in world-space, passed directly into the shader.
+
 •	Local point – The position of the point in local-space relative to the object the point is being created against.
+
 •	Parent – The object the point is being created against.
+
 •	Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
+
 The point and lifespan data are updated each frame and aren’t set from data passed by the SoundMaker. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
 The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points.
 Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers. I then do the following for setting the position of the mesh instance:
 ```hlsl
-	unity_ObjectToWorld = 0.0;
-	unity_ObjectToWorld._m03_m13_m23_m33 = float4(position, 1.0);
-	unity_ObjectToWorld._m00_m11_m22 = step;
-``` (Flick, 2021)
+unity_ObjectToWorld = 0.0;
+unity_ObjectToWorld._m03_m13_m23_m33 = float4(position, 1.0);
+unity_ObjectToWorld._m00_m11_m22 = step;
+``` 
+(Flick, 2021)
+
 This sets the fourth column of the object’s transformation matrix, which is for position. The third column is set to step, which sets the scale of the object.
 
 
