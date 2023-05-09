@@ -5,10 +5,10 @@ Report with up to 6,500 words written by the group.
 - Software engineering (800 words)
 - Implementation (2,000 words)
 - Testing strategy (1,000 words)
-- Release (500 words max.)
-- Evaluation (1,500 words max.)
-- Group work conclusion (600 words max.)
-- Report presentation (200 words max.)
+- Release (500 words)
+- Evaluation (1,500 words)
+- Group work conclusion (600 words)
+- Report presentation (200 words)
 
 # Software Engineering (Stevie)
 - Discuss & justify development methodology
