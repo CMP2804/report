@@ -1,3 +1,6 @@
+# Introduction
+Our objective during this project was to explore non-verbal communication in singleplayer video games. Our artefact is a result of this research, taking the form of a tutorial level for a stealth game. The player character is blind and must navigate through the environment using a form of echolocation. Sources of sounds (such as moving, throwing and clapping) generate coloured points in the game world when sounds bounce off of walls, forming a simple point cloud. The artefact is comprised of two parts: the guided section and unguided section. Within the guided section, the player is introduced to the mechanics in the game and is provided with a safe environment to test these mechanics out. In the unguided section of the tutorial, the player is allowed to navigate the environment as they see fit.
+
 # Software Engineering (Stevie)
 The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies.
 Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies
