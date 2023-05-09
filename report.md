@@ -1,11 +1,9 @@
 # Introduction
 Our objective during this project was to explore non-verbal communication in singleplayer video games. Our artefact is a result of this research, taking the form of a tutorial level for a stealth game. The player character is blind and must navigate through the environment using a form of echolocation. Sources of sounds (such as moving, throwing and clapping) generate coloured points in the game world when sounds bounce off of walls, forming a simple point cloud. The artefact is comprised of two parts: the guided section and unguided section. Within the guided section, the player is introduced to the mechanics in the game and is provided with a safe environment to test these mechanics out. In the unguided section of the tutorial, the player is allowed to navigate the environment as they see fit.
 
-# Software Engineering (Stevie)
-The team decided to avoid prescribing to any single methodology for the project. Instead, it was suggested that the team use a combination of agile methodologies.
-Taking inspiration from [this video](https://www.youtube.com/watch?v=9K20e7jlQPA) by No Boilerplate, the team used an agile methodology that avoided using ceremonies
-such as sprints, stand-ups and estimation. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity.
-Instead, a set of tasks was created to kick off development and additional tasks were added to the backlog when needed.
+# Software Engineering
+## Development Metholodogy
+The team decided to avoid prescribing to any single methodology for the project. According to Gerald Benischke (2022), Agile has a large amount of unnecessary ceremonies designed to make the methodology palatable. Benischke suggests that to keep Agile agile, ceremonies such as estimation, sprints & metrics should be discarded. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity. Typically, tasks are organised at the start of each sprint. Instead, our methodology was far more flexible; tasks could be added or removed from the backlog as necessary.
 
 ## Project Structure
 
@@ -152,4 +150,4 @@ Harper - I believe we have worked together well with our planning, double checki
 # References
 
 Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
-
+Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
