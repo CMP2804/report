@@ -40,6 +40,47 @@ I made the guided tutorial section of the level which contains seperate rooms fo
 Jay section---- 
 I designed the freeform level section of the level which contains 5 rooms and obstacles for the player to navigate and avoid enemies. The freeform level went under 2 different designs, freeform level 1 and freeform level 2. I did not have much experience with level design and the freeform level 1 turned out rather big and clunky due to all the materials and separate structures I built and jig sawed together to make the level. However, by the time I designed the second freeform level which we are using in our release, I had a bit more experience and confidence and under the guide of Harper and our project leader, Stevie, I was able to create a much more flowing, smaller, tidier level with much fewer separate structures and sort out more to do the level as I learnt more. I used pro builder for the building of the freeform level. Pro builder allows you to quickly create and prototype 3D levels, as well as create basic 3D models without leaving Unity. I made freeform level 2 by first creating a flat poly shape, an outer layer to cover the area the level was going to be and then I created another smaller floor area which was the actual size of the level, this was a plane. Then I drew a rough estimate of the rooms and floor and all the corner points and then using one poly shape I created one side of the level and using a second poly shape I created the other side of the level. I then put in all objects that the player could navigate around. I put enemies in each room and set patrol nodes, although I did run into a few problems and needed guidance from Stevie to help sort it.
 
+## Point Cloud Rendering
+
+Instead of rendering the scene normally, we instead generate points in the 3D space relating to sounds the player makes to simulate something akin to echolocation. This is done through physics raycasting in a sphere or cone from a sound source, and casting to the player to see if they could hear it.
+Within this section, “point/s” refers to the rendered spheres the player can see.
+
+### Code structure
+The main two classes which manage point cloud generation are the SoundManager and PointCloudRenderer singleton classes. SoundManager generates the points based on physics raycasts, passing on each new point to be rendered to the PointCloudRenderer, which interacts with the various shaders to render each point using Graphics.DrawMeshInstancedProcedural.
+When and how to generate points is managed by the SoundMaker component, but sounds can be generated from anywhere using the static method SoundManager.MakeSound.
+
+Finding where to generate the points
+In order to provide an easy in-editor way of setting up sound generation
+  
+<sub>Various options for changing how a sound source will transmit the sound. This example is from the player object, controlling the settings for the player's clap.</sub>
+
+ 
+<sub>A visual indicator is shown for the projection of rays which updates in real-time.</sub>
+
+Whenever a sound is requested to be generated, SoundManager creates MakerRay structs for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to PointCloudRenderer to be instanced. 
+The number of rays processed each frames is determined by this calculation: `Min(200, Max(4, NumOfRaysToCast/2))`. This ensures that if the requested number of rays is too great the frame will not hand when trying to process them all, and instead the workload is spread across multiple frames. This creates the downside of the player being able to see the points generating over time instead of all at once, but this is far better than created a lag spike. A way to fully eliminate this would be to calculate the physics raycasting within a compute shader, passing the work onto the GPU to process many rays in parallel. Whilst this would solve the problem, it would require too much time to implement for the benefit it brings.
+
+### Rendering each point
+Once a point has been chosen, its information is passed to PointCloudRenderer, which holds seven parallel lists for the points data:
+•	Colour – The colour of the point based on the material colour of the object hit, or the overridden colour from the ObjectHighlighter component.
+•	Lifespan scale – The life in seconds of the point, used as the duration to fade the point out over.
+•	Normal – The direction the point should face. This is necessary with a non-spherical mesh used for the points. Whilst the release version uses spheres for the points, we originally used quads, but decided on spheres as they looked nicer.
+•	Point – The position of the point in world-space, passed directly into the shader.
+•	Local point – The position of the point in local-space relative to the object the point is being created against.
+•	Parent – The object the point is being created against.
+•	Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
+The point and lifespan data are updated each frame and aren’t set from data passed by the SoundMaker. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
+The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points.
+Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers. I then do the following for setting the position of the mesh instance:
+```hlsl
+	unity_ObjectToWorld = 0.0;
+	unity_ObjectToWorld._m03_m13_m23_m33 = float4(position, 1.0);
+	unity_ObjectToWorld._m00_m11_m22 = step;
+``` (Flick, 2021)
+This sets the fourth column of the object’s transformation matrix, which is for position. The third column is set to step, which sets the scale of the object.
+
+
+
 # Testing Strategy (Stevie)
 - Detail the testing strategy the team used & how it was implemented
     - Unit tests
@@ -93,3 +134,8 @@ https://github.com/CMP2804/Assessment3/releases/tag/Release
 - Include individual contributions table
 
 Harper - I believe we have worked together well with our planning, double checking of eachothers work and file sharing all being a success. We did have issues with communication however, as it was difficult to contact/talk to another individual whom you would be working on a section with.
+
+# References
+
+Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
+
