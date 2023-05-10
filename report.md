@@ -95,11 +95,20 @@ Each frame the point material shader’s buffers are updated with the newest val
 
 To transform each point in world-space to the correct position, the fourth column of the object’s transformation matrix, which is for position (Flick, 2021, ch. 2.3), is assigned to the corresponding position. The third column is set to 0.05f, which sets the scale of the object.
 
+### Shader
+The point cloud procedural material uses a shader created with the Unity Shader Graph package as shown in figure 3. 
+As in the final release we use sphere meshes instead of quads, the “Circle of quads” group on figure 3 has no effect, and therefore it can be conceptually thought of as figure 4 shows.
+The nodes do the following:
+- Position – Returns vertex position relative to the object.
+- InjectPragmas – Passes input straight to output whilst forcing the inclusion of compiler directives to allow for instancing.
+- PointTransformation – The HLSL shader which gets the correct data from the buffers and outputs it, whilst setting the transformation matrix data to set the position and scale of the point.
+- LookAtDirection – A subgraph which rotates each point so that it faces the normal (Erfani, 2022).
 
-In order to provide an easy in-editor way of setting up sound generation Ethan created the `SoundMaker` component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e. lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works.
-As shown in figure 1, the range and spherical sector is shown whilst the `SoundMaker` component is selected, and updates in real-time with the inspector values.
-Figure 2 shows the various inspector values which can be changed, split into sections using Odin Inspector. There is a button to start and stop emission for testing purposes. 
+![image](https://github.com/CMP2804/report/assets/59376295/fee888b0-ac1e-404b-9eb0-ba62e917e919)
+<sub>Figure 3 - The full shader graph shader used by the point cloud material.</sub>
 
+![image](https://github.com/CMP2804/report/assets/59376295/0ecfe22f-e228-44f0-b85b-7c347c4ab2d8)
+<sub>Figure 4 - A simplified representation of the shader graph which excludes the circle calculation that the released game does not use.</sub>
 
 # Testing Strategy (Stevie)
 - Detail the testing strategy the team used & how it was implemented
@@ -156,8 +165,9 @@ https://github.com/CMP2804/Assessment3/releases/tag/Release
 Harper - I believe we have worked together well with our planning, double checking of eachothers work and file sharing all being a success. We did have issues with communication however, as it was difficult to contact/talk to another individual whom you would be working on a section with.
 
 # References
-Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
 Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
-Sommerfield, I. (2010) Software Engineering. Available at: https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf (Accessed: 10 May 2023).
+Erfani, A. (2022) Point cloud rendering with unity, Medium. Available at: https://bootcamp.uxdesign.cc/point-cloud-rendering-with-unity-1a07345eb27a (Accessed: 11 May 2023). 
+Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
 GitHub, GitHub Flow. Available at: https://docs.github.com/en/get-started/quickstart/github-flow (Accessed 10 May 2023).
+Sommerfield, I. (2010) Software Engineering. Available at: https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf (Accessed: 10 May 2023).
 Stack Overflow (2022) 2022 Developer Survey. Available at: https://survey.stackoverflow.co/2022/ (Accessed 10 May 2023).
