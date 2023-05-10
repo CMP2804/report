@@ -3,7 +3,11 @@ Our objective during this project was to explore non-verbal communication in sin
 
 # Software Engineering
 ## Development Metholodogy
-The team decided to avoid prescribing to any single methodology for the project. According to Gerald Benischke (2022), Agile has a large amount of unnecessary ceremonies designed to make the methodology palatable. Benischke suggests that to keep Agile agile, ceremonies such as estimation, sprints & metrics should be discarded. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity. Typically, tasks are organised at the start of each sprint. Instead, our methodology was far more flexible; tasks could be added or removed from the backlog as necessary.
+The team considered a variety of development methodologies. A key factor in our decision was the lack of experience of the team, so the methodology we chose had to be as simple as possible. Originally, a waterfall model was considered because it is simple, linear and suitable for smaller projects like ours. However, this approach was ultimately ruled out because of large overhead costs (Sommerfield I., 2010, p.58).
+
+Following this, agile was considered. Being well-suited to frequent changes in requirements and incremental in nature (Sommerfield I., 2010, p.59), traditional agile seemed to offer a great amount of flexibility with the project. However, with simplicity being a key factor in our decision, it was identified that changes could be made to make the metholdogy less complicated.According to Gerald Benischke (2022), Agile has a large amount of unnecessary ceremonies designed to make the methodology palatable to management. Benischke suggests that to keep Agile agile, ceremonies such as estimation, sprints & metrics should be discarded. As a team inexperienced in working in a group, it was unlikely that we would leverage these ceremonies to our advantage correctly and only serve as additional overhead, so we decided to follow Benischke's suggestions.
+
+The resultant methodology was agile in the sense that requirements could change on-the-fly, but lacked aspects of incremental delivery and customer communication that could have informed changes to requirements that would improve the product.
 
 ## Project Structure
 ### Point Cloud Shader
@@ -12,13 +16,14 @@ In order to do this we procedurally draw sphere meshes each frame manually inste
 ![image](https://github.com/CMP2804/report/assets/59376295/bfc7a9e9-e2a8-46a2-a6eb-b79304f843ea)
 
 ## Version Control
-Git version control was used throughout the project.
-Uploaded to GitHub, we were able to ensure that the project was available to every member of the team and work wouldn't be lost.
-Using Git for version control was an obvious choice given the prevalence of Git in industry, support in IDEs and prior experience of team members.
-We decided to migrate from JetBrains Space to GitHub between assessment 1 and assessment 3 because team members were more familiar with it and it has better tooling.
-Some additional features of note include webhooks (for updates directly in Discord), GitHub Desktop (for members who don't use an IDE) and the CLI.
-We took advantage of GitHub's pull request capabilities by using [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow).
-This lightweight workflow is simple and encourages frequent commits and reduces the chance of merge conflicts down-the-line. We didn't have any issues applying it in the project.
+Git version control was used throughout the project. Being the most popular VCS of choice for developers (Stack Overflow, 2022) and having several members of the team with experience with Git, it was the obvious choice to make. We hosted our repository on GitHub for the same reasons (Stack Overflow, 2022). This migration to GitHub simplified the collaboration process and reduced the likelihood of catastrophic data loss. Whilst we used JetBrains Space for assessment 1, the migration to GitHub came with several additional features besides increased familiarity:
+- Webhook support
+- GitHub Desktop (for level designers and those unfamiliar with Git)
+- CLI application
+
+We decided to keep our branching strategy simple. There was one protected base branch, `submission`, from which feature branches (such as `guided_tutorial`) were branched from. Once a feature was complete, a pull request was created to merge the feature branch back into `submission` and opened to review. It is important to note that `submission` was not only protected from being pushed to directly, but also any pull requests were unable to be merged without first being approved by another member of the team. Our branching strategy is identical to the GitHub Flow (GitHub).
+
+This lightweight workflow was simple, encouraged frequent commits and reduced the chance of merge conflicts down-the-line. Whilst the workflow was simple enough to follow in theory, in practise the team could have engaged more with pull request reviews to increase the quality of the final product.
 
 ## Project Planning
 It was evident to the team that project planning was going to be a crucial part of working as a team. We considered various solutions, ranging from Trello to JetBrains Space.
