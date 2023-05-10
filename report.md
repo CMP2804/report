@@ -87,17 +87,10 @@ Once a point has been chosen, its information is passed to PointCloudRenderer, w
 - Parent – The object the point is being created against.
 - Lifespan - A float value which transitions from 1 to 0 over the lifetime of the point, controlling the point’s alpha to fade it out.
 
-The point and lifespan data are updated each frame and aren’t set from data passed by the `SoundMaker`. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
-The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points.
-Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers. I then do the following for setting the position of the mesh instance:
-```hlsl
-unity_ObjectToWorld = 0.0;
-unity_ObjectToWorld._m03_m13_m23_m33 = float4(position, 1.0);
-unity_ObjectToWorld._m00_m11_m22 = step;
-``` 
-(Flick, 2021)
-
-This sets the fourth column of the object’s transformation matrix, which is for position. The third column is set to step, which sets the scale of the object.
+The point and lifespan data are changed each frame based on the position of the parent and time since last frame, respectively. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interesting made it tricky to see exactly where the player was. 
+The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points. 
+Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers.
+To transform each point in world-space to the correct position, the fourth column of the object’s transformation matrix, which is for position (Flick, 2021, ch. 2.3), is assigned to the corresponding position. The third column is set to 0.05f, which sets the scale of the object.
 
 In order to provide an easy in-editor way of setting up sound generation Ethan created the `SoundMaker` component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e. lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works.
 As shown in figure 1, the range and spherical sector is shown whilst the `SoundMaker` component is selected, and updates in real-time with the inspector values.
