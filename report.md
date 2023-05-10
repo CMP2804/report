@@ -6,6 +6,10 @@ Our objective during this project was to explore non-verbal communication in sin
 The team decided to avoid prescribing to any single methodology for the project. According to Gerald Benischke (2022), Agile has a large amount of unnecessary ceremonies designed to make the methodology palatable. Benischke suggests that to keep Agile agile, ceremonies such as estimation, sprints & metrics should be discarded. This allowed the team to work on their tasks without unnecessary overhead, increasing productivity. Typically, tasks are organised at the start of each sprint. Instead, our methodology was far more flexible; tasks could be added or removed from the backlog as necessary.
 
 ## Project Structure
+### Point Cloud Shader
+In a typical Unity game, objects are rendered by the render pipeline in accordance to the materials applied to mesh surfaces. In our game however, we render the scene using a point cloud, with each point spawning on geometry when a sound is made.
+In order to do this we procedurally draw sphere meshes each frame manually instead of using the standard render pipeline.
+![image](https://github.com/CMP2804/report/assets/59376295/bfc7a9e9-e2a8-46a2-a6eb-b79304f843ea)
 
 ## Version Control
 Git version control was used throughout the project.
@@ -28,11 +32,6 @@ As a consequence, it was only natural that we leveraged GitHub's Issues & Projec
 - Discussing tasks without flooding the team group chat
 GitHub Projects serves as an extension to GitHub Issues and provides the ability to create a project timeline, prioritise tasks and provide more incremental information about the state of a task.
 Using these tools, we were able to create an at-a-glance Gantt chart for the project and organise the project in a clear, transparent matter.
-
-## Point Cloud Shader
-In a typical Unity game, objects are rendered by the render pipeline in accordance to the materials applied to mesh surfaces. In our game however, we render the scene using a point cloud, with each point spawning on geometry when a sound is made.
-In order to do this we procedurally draw sphere meshes each frame manually instead of using the standard render pipeline.
-![image](https://github.com/CMP2804/report/assets/59376295/bfc7a9e9-e2a8-46a2-a6eb-b79304f843ea)
 
 
 # Implementation (various)
