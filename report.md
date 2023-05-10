@@ -29,6 +29,12 @@ As a consequence, it was only natural that we leveraged GitHub's Issues & Projec
 GitHub Projects serves as an extension to GitHub Issues and provides the ability to create a project timeline, prioritise tasks and provide more incremental information about the state of a task.
 Using these tools, we were able to create an at-a-glance Gantt chart for the project and organise the project in a clear, transparent matter.
 
+## Point Cloud Shader
+In a typical Unity game, objects are rendered by the render pipeline in accordance to the materials applied to mesh surfaces. In our game however, we render the scene using a point cloud, with each point spawning on geometry when a sound is made.
+In order to do this we procedurally draw sphere meshes each frame manually instead of using the standard render pipeline.
+![image](https://github.com/CMP2804/report/assets/59376295/bfc7a9e9-e2a8-46a2-a6eb-b79304f843ea)
+
+
 # Implementation (various)
 - Describe what has been made and how it has been made
 - Justify approach taken and toolsets used
@@ -42,8 +48,7 @@ I designed the freeform level section of the level which contains 5 rooms and ob
 
 ## Point Cloud Rendering
 
-Instead of rendering the scene normally, we instead generate points in the 3D space relating to sounds the player makes to simulate something akin to echolocation. This is done through physics raycasting in a sphere or cone from a sound source, and casting to the player to see if they could hear it.
-Within this section, “point/s” refers to the rendered spheres the player can see.
+
 
 ### Code structure
 The main two classes which manage point cloud generation are the SoundManager and PointCloudRenderer singleton classes. SoundManager generates the points based on physics raycasts, passing on each new point to be rendered to the PointCloudRenderer, which interacts with the various shaders to render each point using Graphics.DrawMeshInstancedProcedural.
