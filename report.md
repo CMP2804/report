@@ -80,11 +80,17 @@ The number of rays processed each frames is determined by this calculation: `Min
 ### Rendering each point
 Once a point has been chosen, its information is passed to PointCloudRenderer, which holds seven parallel lists for the points data:
 •	Colour – The colour of the point based on the material colour of the object hit, or the overridden colour from the ObjectHighlighter component.
+
 •	Lifespan scale – The life in seconds of the point, used as the duration to fade the point out over.
+
 •	Normal – The direction the point should face. This is necessary with a non-spherical mesh used for the points. Whilst the release version uses spheres for the points, we originally used quads, but decided on spheres as they looked nicer.
+
 •	Point – The position of the point in world-space, passed directly into the shader.
+
 •	Local point – The position of the point in local-space relative to the object the point is being created against.
+
 •	Parent – The object the point is being created against.
+
 •	Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
 
 The point and lifespan data are updated each frame and aren’t set from data passed by the `SoundMaker`. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
