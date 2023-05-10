@@ -146,8 +146,6 @@ That means by releasing our game on Itch.io as part of a release plan, we could 
 
 https://github.com/CMP2804/Assessment3/releases/tag/Release
 
-
-
 # Evaluation (Stevie & Jack?)
 - Discuss how the project went & what could have been improved
 - Document user reviews of the artefact
@@ -163,6 +161,9 @@ https://github.com/CMP2804/Assessment3/releases/tag/Release
 - Include individual contributions table
 
 Harper - I believe we have worked together well with our planning, double checking of eachothers work and file sharing all being a success. We did have issues with communication however, as it was difficult to contact/talk to another individual whom you would be working on a section with.
+
+Differing levels of experience and time-commitment by each team member resulted in some tasks being cancelled, reassigned or completed to a low quality.
+This also caused a severe lack of communication, with non-committed team members reaching out jsut before deadlines, and a lack of skills with our team management software such as GitHub. This resulted in issues being ignored.
 
 # References
 Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
