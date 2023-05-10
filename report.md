@@ -64,7 +64,7 @@ The main two classes which manage point cloud generation are the `SoundManager` 
 When and how to generate points is managed by the `SoundMaker` component, but sounds can be generated from anywhere using the static method `SoundManager.MakeSound()`.
 
 ### Level design tooling
-To provide an easy in-editor way of setting up sound generation, Ethan created the SoundMaker component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e., lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works. As shown in figure 1, the range and spherical sector is shown whilst the SoundMaker component is selected, and updates in real-time with the inspector values. Figure 2 shows the various inspector values which can be changed, split into sections using Odin Inspector. There is a button to start and stop emission for testing purposes.
+To provide an easy in-editor way of setting up sound generation, we created the `SoundMaker` component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e., lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works. As shown in figure 1, the range and spherical sector is shown whilst the `SoundMaker` component is selected, and updates in real-time with the inspector values. Figure 2 shows the various inspector values which can be changed, split into sections using Odin Inspector. There is a button to start and stop emission for testing purposes.
 
 ![Picture1](https://github.com/CMP2804/report/assets/59376295/dd3abb5d-8ca9-421b-b950-a1809fdf10f1)
 
