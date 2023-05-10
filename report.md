@@ -60,14 +60,11 @@ I designed the freeform level section of the level which contains 5 rooms and ob
 
 ## Point Cloud Rendering
 
-
-
-### Code structure
 The main two classes which manage point cloud generation are the `SoundManager` and `PointCloudRenderer` singleton classes. `SoundManager` generates the points based on physics raycasts, passing on each new point to be rendered to the `PointCloudRenderer`, which interacts with the various shaders to render each point using `Graphics.DrawMeshInstancedProcedural()`.
 When and how to generate points is managed by the `SoundMaker` component, but sounds can be generated from anywhere using the static method `SoundManager.MakeSound()`.
 
-Finding where to generate the points
-In order to provide an easy in-editor way of setting up sound generation Ethan created 
+### Level design tooling Finding where to generate the points
+To provide an easy in-editor way of setting up sound generation, Ethan created the SoundMaker component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e., lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works. As shown in figure 1, the range and spherical sector is shown whilst the SoundMaker component is selected, and updates in real-time with the inspector values. Figure 2 shows the various inspector values which can be changed, split into sections using Odin Inspector. There is a button to start and stop emission for testing purposes.
 
 ![Picture1](https://github.com/CMP2804/report/assets/59376295/dd3abb5d-8ca9-421b-b950-a1809fdf10f1)
 
@@ -83,17 +80,11 @@ The number of rays processed each frames is determined by this calculation: `Min
 ### Rendering each point
 Once a point has been chosen, its information is passed to PointCloudRenderer, which holds seven parallel lists for the points data:
 •	Colour – The colour of the point based on the material colour of the object hit, or the overridden colour from the ObjectHighlighter component.
-
 •	Lifespan scale – The life in seconds of the point, used as the duration to fade the point out over.
-
 •	Normal – The direction the point should face. This is necessary with a non-spherical mesh used for the points. Whilst the release version uses spheres for the points, we originally used quads, but decided on spheres as they looked nicer.
-
 •	Point – The position of the point in world-space, passed directly into the shader.
-
 •	Local point – The position of the point in local-space relative to the object the point is being created against.
-
 •	Parent – The object the point is being created against.
-
 •	Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
 
 The point and lifespan data are updated each frame and aren’t set from data passed by the `SoundMaker`. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
