@@ -10,6 +10,14 @@ Following this, agile was considered. Being well-suited to frequent changes in r
 The resultant methodology was agile in the sense that requirements could change on-the-fly, but lacked aspects of incremental delivery and customer communication that could have informed changes to requirements that would improve the product.
 
 ## Project Structure
+### Code Structure
+The folder structure used in the artefact is largely defined by Unity, however the assets folder is neatly organised into a categorical list of directories for simplicity's sake.
+Most are self-explanatory but there are several which are not:
+- RiderFlow.UserData, ProBuilder Data & Resources: plugin data
+- Prototyping: Prototyping assets
+<img width="222" alt="image" src="https://github.com/CMP2804/report/assets/101411609/0d42bbcb-36e4-499a-93eb-198bda4c9f5a">
+
+
 ### Point Cloud Shader
 In a typical Unity game, objects are rendered by the render pipeline in accordance to the materials applied to mesh surfaces. In our game however, we render the scene using a point cloud, with each point spawning on geometry when a sound is made.
 In order to do this we procedurally draw sphere meshes each frame manually instead of using the standard render pipeline.
@@ -35,9 +43,9 @@ As a consequence, it was only natural that we leveraged GitHub's Issues & Projec
 - Tracking task completion
 - Assigning tasks to team members
 - Discussing tasks without flooding the team group chat
+
 GitHub Projects serves as an extension to GitHub Issues and provides the ability to create a project timeline, prioritise tasks and provide more incremental information about the state of a task.
 Using these tools, we were able to create an at-a-glance Gantt chart for the project and organise the project in a clear, transparent matter.
-
 
 # Implementation (various)
 - Describe what has been made and how it has been made
