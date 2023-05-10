@@ -63,8 +63,8 @@ I designed the freeform level section of the level which contains 5 rooms and ob
 
 
 ### Code structure
-The main two classes which manage point cloud generation are the SoundManager and PointCloudRenderer singleton classes. SoundManager generates the points based on physics raycasts, passing on each new point to be rendered to the PointCloudRenderer, which interacts with the various shaders to render each point using Graphics.DrawMeshInstancedProcedural.
-When and how to generate points is managed by the SoundMaker component, but sounds can be generated from anywhere using the static method SoundManager.MakeSound.
+The main two classes which manage point cloud generation are the `SoundManager` and `PointCloudRenderer` singleton classes. `SoundManager` generates the points based on physics raycasts, passing on each new point to be rendered to the `PointCloudRenderer`, which interacts with the various shaders to render each point using `Graphics.DrawMeshInstancedProcedural()`.
+When and how to generate points is managed by the `SoundMaker` component, but sounds can be generated from anywhere using the static method `SoundManager.MakeSound()`.
 
 Finding where to generate the points
 In order to provide an easy in-editor way of setting up sound generation Ethan created 
@@ -77,7 +77,7 @@ In order to provide an easy in-editor way of setting up sound generation Ethan c
 
 <sub>Figure 2 - A visual indicator is shown for the projection of rays which updates in real-time.</sub>
 
-Whenever a sound is requested to be generated, SoundManager creates MakerRay structs for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to PointCloudRenderer to be instanced. 
+Whenever a sound is requested to be generated, `SoundManager` creates `MakerRay` structs for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to `PointCloudRenderer` to be instanced. 
 The number of rays processed each frames is determined by this calculation: `Min(200, Max(4, NumOfRaysToCast/2))`. This ensures that if the requested number of rays is too great the frame will not hand when trying to process them all, and instead the workload is spread across multiple frames. This creates the downside of the player being able to see the points generating over time instead of all at once, but this is far better than created a lag spike. A way to fully eliminate this would be to calculate the physics raycasting within a compute shader, passing the work onto the GPU to process many rays in parallel. Whilst this would solve the problem, it would require too much time to implement for the benefit it brings.
 
 ### Rendering each point
@@ -96,7 +96,7 @@ Once a point has been chosen, its information is passed to PointCloudRenderer, w
 
 •	Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
 
-The point and lifespan data are updated each frame and aren’t set from data passed by the SoundMaker. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
+The point and lifespan data are updated each frame and aren’t set from data passed by the `SoundMaker`. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
 The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points.
 Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers. I then do the following for setting the position of the mesh instance:
 ```hlsl
