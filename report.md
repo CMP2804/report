@@ -74,8 +74,12 @@ To provide an easy in-editor way of setting up sound generation, we created the 
 
 <sub>Figure 2 - A visual indicator is shown for the projection of rays which updates in real-time.</sub>
 
-Whenever a sound is requested to be generated, `SoundManager` creates `MakerRay` structs for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to `PointCloudRenderer` to be instanced. 
+Whenever a sound is requested to be generated, `SoundManager` creates `MakerRay` structs (as shown in figure 3) for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to `PointCloudRenderer` to be instanced. 
 The number of rays processed each frames is determined by this calculation: `Min(200, Max(4, NumOfRaysToCast/2))`. This ensures that if the requested number of rays is too great the frame will not hand when trying to process them all, and instead the workload is spread across multiple frames. This creates the downside of the player being able to see the points generating over time instead of all at once, but this is far better than created a lag spike. A way to fully eliminate this would be to calculate the physics raycasting within a compute shader, passing the work onto the GPU to process many rays in parallel. Whilst this would solve the problem, it would require too much time to implement for the benefit it brings.
+
+![image](https://github.com/CMP2804/report/assets/59376295/b38ac99c-2101-40f5-be47-e6a81fd03f01)
+
+<sub>Figure 3 - The MakerRay struct.</sub>
 
 ### Rendering each point
 Once a point has been chosen, its information is passed to PointCloudRenderer, which holds seven parallel lists for the points data:
@@ -91,24 +95,27 @@ The point and lifespan data are changed each frame based on the position of the 
 
 The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points. 
 
-Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. The material’s shader uses procedural instancing to allow multiple instances of a procedural mesh or particle system to be rendered efficiently. Within the shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers.
-
-To transform each point in world-space to the correct position, the fourth column of the object’s transformation matrix, which is for position (Flick, 2021, ch. 2.3), is assigned to the corresponding position. The third column is set to 0.05f, which sets the scale of the object.
+Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. 
 
 ### Shader
-The point cloud procedural material uses a shader created with the Unity Shader Graph package as shown in figure 3. 
-As in the final release we use sphere meshes instead of quads, the “Circle of quads” group on figure 3 has no effect, and therefore it can be conceptually thought of as figure 4 shows.
+
+The point cloud procedural material uses a shader created with the Unity Shader Graph package as shown in figure 4. The shader uses procedural instancing to allow multiple instances of a procedural mesh to be rendered efficiently. 
+As in the final release we use sphere meshes instead of quads, the “Circle of quads” group on figure 4 has no effect, and therefore it can be conceptually thought of as figure 5 shows.
 The nodes do the following:
 - Position – Returns vertex position relative to the object.
 - InjectPragmas – Passes input straight to output whilst forcing the inclusion of compiler directives to allow for instancing.
 - PointTransformation – The HLSL shader which gets the correct data from the buffers and outputs it, whilst setting the transformation matrix data to set the position and scale of the point.
 - LookAtDirection – A subgraph which rotates each point so that it faces the normal. This is done by finding the plane for rotation and the angle to rotate it by, then using the `RotateAroundAxis` node (Erfani, 2022).
 
+Within the PointTransformation shader the `ConfigureProcedural()` function is used to set the values of each point, with the `unity_InstanceID` used as the index of the buffers.
+
+To transform each point in world-space to the correct position, the fourth column of the object’s transformation matrix, which is for position (Flick, 2021, ch. 2.3), is assigned to the corresponding position. The third column is set to 0.05f, which sets the scale of the object.
+
 ![image](https://github.com/CMP2804/report/assets/59376295/fee888b0-ac1e-404b-9eb0-ba62e917e919)
-<sub>Figure 3 - The full shader graph shader used by the point cloud material.</sub>
+<sub>Figure 4 - The full shader graph shader used by the point cloud material.</sub>
 
 ![image](https://github.com/CMP2804/report/assets/59376295/0ecfe22f-e228-44f0-b85b-7c347c4ab2d8)
-<sub>Figure 4 - A simplified representation of the shader graph which excludes the circle calculation that the released game does not use.</sub>
+<sub>Figure 5 - A simplified representation of the shader graph which excludes the circle calculation that the released game does not use.</sub>
 
 # Testing Strategy (Stevie)
 - Detail the testing strategy the team used & how it was implemented
