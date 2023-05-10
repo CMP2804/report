@@ -168,6 +168,8 @@ https://github.com/CMP2804/Assessment3/releases/tag/Release
 Harper - I believe we have worked together well with our planning, double checking of eachothers work and file sharing all being a success. We did have issues with communication however, as it was difficult to contact/talk to another individual whom you would be working on a section with.
 
 # References
-
 Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
 Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
+Sommerfield, I. (2010) Software Engineering. Available at: https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf (Accessed: 10 May 2023).
+GitHub, GitHub Flow. Available at: https://docs.github.com/en/get-started/quickstart/github-flow (Accessed 10 May 2023).
+Stack Overflow (2022) 2022 Developer Survey. Available at: https://survey.stackoverflow.co/2022/ (Accessed 10 May 2023).
