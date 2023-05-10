@@ -102,7 +102,7 @@ The nodes do the following:
 - Position – Returns vertex position relative to the object.
 - InjectPragmas – Passes input straight to output whilst forcing the inclusion of compiler directives to allow for instancing.
 - PointTransformation – The HLSL shader which gets the correct data from the buffers and outputs it, whilst setting the transformation matrix data to set the position and scale of the point.
-- LookAtDirection – A subgraph which rotates each point so that it faces the normal (Erfani, 2022).
+- LookAtDirection – A subgraph which rotates each point so that it faces the normal. This is done by finding the plane for rotation and the angle to rotate it by, then using the `RotateAroundAxis` node (Erfani, 2022).
 
 ![image](https://github.com/CMP2804/report/assets/59376295/fee888b0-ac1e-404b-9eb0-ba62e917e919)
 <sub>Figure 3 - The full shader graph shader used by the point cloud material.</sub>
