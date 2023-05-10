@@ -85,7 +85,7 @@ Once a point has been chosen, its information is passed to PointCloudRenderer, w
 - Point – The position of the point in world-space, passed directly into the shader.
 - Local point – The position of the point in local-space relative to the object the point is being created against.
 - Parent – The object the point is being created against.
-- Lifespan - The 0 to 1 current life of the point which controls the point’s alpha.
+- Lifespan - A float value which transitions from 1 to 0 over the lifetime of the point, controlling the point’s alpha to fade it out.
 
 The point and lifespan data are updated each frame and aren’t set from data passed by the `SoundMaker`. The world-space point is calculated by using the `Tranform.TransformPoint()` on the local point. This effectively parents the points to whatever object they’re created from. This was done as when the player moved around, they left a trail of points, which whilst interested made it tricky to see exactly where the player was.
 The lifespan value is calculated inside a compute shader, which reduces the lifespan of all points by the current delta time that frame. This is unnecessary as each point is already being iterated over each frame to delete expired points and to calculate the world-space position. A compute shader solution is implemented however as it allows more control over each point without any performance cost in the future, such as animating points or calculating physics interacts with the points.
