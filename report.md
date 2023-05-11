@@ -174,10 +174,16 @@ Differing levels of experience and time-commitment by each team member resulted 
 This also caused a severe lack of communication, with non-committed team members reaching out jsut before deadlines, and a lack of skills with our team management software such as GitHub. This resulted in issues being ignored.
 
 # References
-Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
+Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023).
+
 Erfani, A. (2022) Point cloud rendering with unity, Medium. Available at: https://bootcamp.uxdesign.cc/point-cloud-rendering-with-unity-1a07345eb27a (Accessed: 10 May 2023). 
+
 Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
+
 GitHub, GitHub Flow. Available at: https://docs.github.com/en/get-started/quickstart/github-flow (Accessed 10 May 2023).
+
 Sommerfield, I. (2010) Software Engineering. Available at: https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf (Accessed: 10 May 2023).
+
 Stack Overflow (2022) 2022 Developer Survey. Available at: https://survey.stackoverflow.co/2022/ (Accessed 10 May 2023).
+
 Unity Technologies (2023) Scripting API: Graphics.DrawMeshInstancedProcedural. Available at: https://docs.unity3d.com/ScriptReference/Graphics.DrawMeshInstancedProcedural.html (Accessed: 10 May 2023). 
