@@ -60,9 +60,6 @@ I designed the freeform level section of the level which contains 5 rooms and ob
 
 ## Point Cloud Rendering
 
-The main two classes which manage point cloud generation are the `SoundManager` and `PointCloudRenderer` singleton classes. `SoundManager` generates the points based on physics raycasts, passing on each new point to be rendered to the `PointCloudRenderer`, which interacts with the various shaders to render each point using `Graphics.DrawMeshInstancedProcedural()`.
-When and how to generate points is managed by the `SoundMaker` component, but sounds can be generated from anywhere using the static method `SoundManager.MakeSound()`.
-
 ### Level design tooling
 To provide an easy in-editor way of setting up sound generation, we created the `SoundMaker` component which uses Odin Inspector serialisation for changing how the points are emitted and their behaviour, i.e., lifespan. This allowed us to interact with the point cloud system without needing any in-depth knowledge about how it works. As shown in figure 1, the range and spherical sector is shown whilst the `SoundMaker` component is selected, and updates in real-time with the inspector values. Figure 2 shows the various inspector values which can be changed, split into sections using Odin Inspector. There is a button to start and stop emission for testing purposes.
 
@@ -97,6 +94,7 @@ The lifespan value is calculated inside a compute shader, which reduces the life
 
 Each frame the point material shader’s buffers are updated with the newest values for positions, normal, lifespans and colours. 
 
+Once the shader's buffers have been updated, the point cloud is rendered using the `Graphics.DrawMeshInstancedProcedural()` function. This function "Draws the same mesh multiple times using GPU instancing" (Unity Technologies, 2023), which allows for efficient rendering of a large number of objects with different properties.
 ### Shader
 
 The point cloud procedural material uses a shader created with the Unity Shader Graph package as shown in figure 4. The shader uses procedural instancing to allow multiple instances of a procedural mesh to be rendered efficiently. 
@@ -174,8 +172,9 @@ This also caused a severe lack of communication, with non-committed team members
 
 # References
 Benischke, G (2021) Less is more Agile. Available at: https://beny23.github.io/posts/my_take_on_engineering_room_9/ (Accessed: 09 May 2023)
-Erfani, A. (2022) Point cloud rendering with unity, Medium. Available at: https://bootcamp.uxdesign.cc/point-cloud-rendering-with-unity-1a07345eb27a (Accessed: 11 May 2023). 
+Erfani, A. (2022) Point cloud rendering with unity, Medium. Available at: https://bootcamp.uxdesign.cc/point-cloud-rendering-with-unity-1a07345eb27a (Accessed: 10 May 2023). 
 Flick, J. (2021) Compute shaders, Catlike Coding. Available at: https://catlikecoding.com/unity/tutorials/basics/compute-shaders/ (Accessed: 09 May 2023). 
 GitHub, GitHub Flow. Available at: https://docs.github.com/en/get-started/quickstart/github-flow (Accessed 10 May 2023).
 Sommerfield, I. (2010) Software Engineering. Available at: https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf (Accessed: 10 May 2023).
 Stack Overflow (2022) 2022 Developer Survey. Available at: https://survey.stackoverflow.co/2022/ (Accessed 10 May 2023).
+Unity Technologies (2023) Scripting API: Graphics.DrawMeshInstancedProcedural. Available at: https://docs.unity3d.com/ScriptReference/Graphics.DrawMeshInstancedProcedural.html (Accessed: 10 May 2023). 
