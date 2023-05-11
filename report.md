@@ -174,6 +174,8 @@ Harper - I believe we have worked together well with our planning, double checki
 
 Jay believe's that the team worked together better over the course of year, more so in the later stages than at the beginning. However there was issues with communication that made group work more difficult than it needed to be. Overall Jay would say the team worked relatively well together, we planned work, got the majority of that work done, we helped and supported each other and if someone didn't know how to do something, they was taught how to do it.  
 
+Jack - Planning for the project was done well as a team and each member of the group knew what the others were doing by looking at the gantt chart on GitHub. During development however, my work was very independent to others so there was not much communication done. When it came to testing parts of the project feedback was provided and acted upon quickly.
+
 Differing levels of experience and time-commitment by each team member resulted in some tasks being cancelled, reassigned or completed to a low quality.
 This also caused a severe lack of communication, with non-committed team members reaching out jsut before deadlines, and a lack of skills with our team management software such as GitHub. This resulted in issues being ignored.
 
