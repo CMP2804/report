@@ -199,6 +199,7 @@ In order to improve the group’s performance, we’ve agreed on the following a
 - Update each member through a group text channel whenever a task has been completed, with a demonstration of what they have produced.
 - Make any time in which members cannot work on the project known to the group, creating an understanding of when and for how long members can work on the project.
 - Each member should provide feedback on other’s work. This can be suggestions for improvement, or at the least an acknowledgement of the work completed.
+
 This action plan aims at creating a more collaborative team environment, as collaboration and teamwork are essential to any group project’s success. Each team member sharing their work, and reviewing each other’s work promotes taking ownership for successes, and motivates members to apply their best efforts with constant improvement and iteration.
 
 # References
