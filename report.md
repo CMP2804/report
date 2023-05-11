@@ -72,7 +72,10 @@ To provide an easy in-editor way of setting up sound generation, we created the 
 <sub>Figure 2 - A visual indicator is shown for the projection of rays which updates in real-time.</sub>
 
 Whenever a sound is requested to be generated, `SoundManager` creates `MakerRay` structs (as shown in figure 3) for each ray requested randomly within the defined area. Each update a dynamic number of queued rays are processed and sent to `PointCloudRenderer` to be instanced. 
-The number of rays processed each frames is determined by this calculation: `Min(200, Max(4, NumOfRaysToCast/2))`. This ensures that if the requested number of rays is too great the frame will not hand when trying to process them all, and instead the workload is spread across multiple frames. This creates the downside of the player being able to see the points generating over time instead of all at once, but this is far better than created a lag spike. A way to fully eliminate this would be to calculate the physics raycasting within a compute shader, passing the work onto the GPU to process many rays in parallel. Whilst this would solve the problem, it would require too much time to implement for the benefit it brings.
+
+The number of rays processed each frames is determined by this calculation: `Min(200, Max(4, NumOfRaysToCast/2))`. This ensures that if the requested number of rays is too great the frame will not hand when trying to process them all, and instead the workload is spread across multiple frames. This creates the downside of the player being able to see the points generating over time instead of all at once, but is a good trade-off to framerate stuttering. 
+
+A way to fully eliminate this would be to calculate the physics raycasting within a compute shader, passing the work onto the GPU to process many rays in parallel. Whilst this would solve the problem, it would require too much time to implement for the benefit it brings.
 
 ![image](https://github.com/CMP2804/report/assets/59376295/b38ac99c-2101-40f5-be47-e6a81fd03f01)
 
